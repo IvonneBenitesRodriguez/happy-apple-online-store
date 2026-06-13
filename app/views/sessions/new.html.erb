@@ -1,0 +1,24 @@
+<div class="login-container">
+  <div class="login-form">
+    <h1>Login to your account</h1>
+    <p>Hello happy apple lover, welcome back to your account ☕</p>
+
+    <%= form_with url: session_url do |form| %>
+      <%= form.label :email_address, "E-mail" %><br>
+      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "example@gmail.com" %><br>
+
+      <%= form.label :password, "Password" %><br>
+      <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Your password" %><br>
+
+      <%= link_to "Forgot password?", new_password_path %><br>
+
+      <%= form.submit "Login" %>
+    <% end %>
+
+    <p>Don't have an account? <%= link_to "Sign up", new_registration_path %></p>
+  </div>
+
+  <div class="login-picture">
+    <!-- Foto de café aquí - lunes -->
+  </div>
+</div>
