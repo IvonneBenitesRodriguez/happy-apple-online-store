@@ -1,5 +1,6 @@
 <div class="products-header">
   <h1>Hello, <%= current_user.email_address %> 👋</h1>
+  <%= render "cart_items/cart_count" %>
   <div class="search-bar">
     <%= search_field_tag :search, params[:search], 
         placeholder: "Search...", class: "search-input" %>
@@ -17,7 +18,7 @@
       <p class="product-price">$<%= product.price %></p>
       <p class="product-benefits"><%= product.benefits %></p>
       <%= link_to "Details", product_path(product), class: "btn-details" %>
-      <button class="btn-cart">Add to Cart</button>
+      <%= button_to "Add to Cart", cart_items_path(product_id: product.id), method: :post, class: "btn-cart" %>
     </div>
   <% end %>
 </div>
