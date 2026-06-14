@@ -1,0 +1,45 @@
+<div class="checkout-container">
+  <h1>Checkout 🛒</h1>
+
+  <div class="order-summary">
+    <h2>Order Summary</h2>
+    <% @cart_items.each do |item| %>
+      <p><%= item.product.name %> x<%= item.quantity %> — $<%= item.quantity * item.product.price %></p>
+    <% end %>
+    <h3>Total: $<%= @cart_items.sum { |i| i.quantity * i.product.price } %></h3>
+  </div>
+
+  <%= form_with model: @order, url: orders_path do |form| %>
+    <% if @order&.errors&.any? %>
+      <div class="error-messages">
+        <ul>
+          <% @order.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form.label :shipping_address, "Shipping Address" %><br>
+    <%= form.text_area :shipping_address, rows: 3, required: true,
+        placeholder: "Street, City, Postal Code, Country" %><br>
+
+    <%= form.label :phone, "Phone Number" %><br>
+    <%= form.telephone_field :phone, required: true,
+        placeholder: "+49 123 456789" %><br>
+
+    <%= form.label "Payment Method" %><br>
+    <label>
+      <%= form.radio_button :payment_method, "credit_card", checked: true %>
+      Credit Card
+    </label>
+    <label>
+      <%= form.radio_button :payment_method, "paypal" %>
+      PayPal
+    </label>
+    <br>
+    <p class="security-note">🔒 For security reasons, card details are processed by our payment provider and are never stored on our servers.</p>
+
+    <%= form.submit "Place Order" %>
+  <% end %>
+</div>

@@ -1,0 +1,19 @@
+<div class="order-confirmation">
+  <h1>Order Confirmed! 🎉</h1>
+  <p>Thank you for your order, <%= current_user.email_address %>!</p>
+
+  <h2>Order #<%= @order.id %></h2>
+  <p>Status: <%= @order.status.capitalize %></p>
+  <p>Shipping Address: <%= @order.shipping_address %></p>
+  <p>Phone: <%= @order.phone %></p>
+  <p>Payment Method: <%= @order.payment_method.humanize %></p>
+
+  <h3>Items:</h3>
+  <% @order.order_items.each do |item| %>
+    <p><%= item.product.name %> x<%= item.quantity %> — $<%= item.quantity * item.price %></p>
+  <% end %>
+
+  <h2>Total: $<%= @order.total %></h2>
+
+  <%= link_to "Continue Shopping", products_path %>
+</div>

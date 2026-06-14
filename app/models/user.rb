@@ -4,6 +4,8 @@ class User < ApplicationRecord
   
   has_one :cart, dependent: :destroy
 
+  has_many :orders, dependent: :destroy
+
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
   validates :email_address, presence: true, uniqueness: true,
