@@ -14,12 +14,13 @@ class CartItemsController < ApplicationController
   end
 
   def destroy
-    item = current_user.cart.cart_items.find(params[:id])
-    item.destroy
+  @cart = current_user.cart
+  @item = @cart.cart_items.find(params[:id])
+  @item.destroy
 
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to products_path }
-    end
+  respond_to do |format|
+    format.turbo_stream
+    format.html { redirect_to cart_path }
   end
+end
 end

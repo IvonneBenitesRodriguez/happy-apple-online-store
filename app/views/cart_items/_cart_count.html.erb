@@ -1,8 +1,8 @@
 <%= turbo_frame_tag "cart_count" do %>
-  <span class="cart-icon">
+  <%= link_to cart_path, class: "cart-icon", data: { turbo_frame: "_top" } do %>
     🛒
     <% if current_user.cart&.total_items.to_i > 0 %>
       <span class="cart-badge"><%= current_user.cart.total_items %></span>
     <% end %>
-  </span>
+  <% end %>
 <% end %>

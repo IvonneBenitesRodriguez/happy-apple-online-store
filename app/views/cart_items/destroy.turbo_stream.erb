@@ -1,0 +1,12 @@
+<%= turbo_stream.remove "cart_item_#{@item.id}" %>
+
+<%= turbo_stream.replace "cart_total" do %>
+  <% remaining = @cart.cart_items.reload %>
+  <%= turbo_frame_tag "cart_total" do %>
+    <h2>Total: $<%= remaining.sum { |i| i.quantity * i.product.price } %></h2>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.replace "cart_count" do %>
+  <%= render "cart_items/cart_count" %>
+<% end %>

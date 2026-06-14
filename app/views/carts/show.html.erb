@@ -1,0 +1,24 @@
+<h1>Your Cart 🛒</h1>
+
+<%= turbo_frame_tag "cart_items_list" do %>
+  <% if @cart_items.any? %>
+    <% @cart_items.each do |item| %>
+      <div id="cart_item_<%= item.id %>" class="cart-item">
+        <span><%= item.product.name %></span>
+        <span>Qty: <%= item.quantity %></span>
+        <span>$<%= item.product.price %> each</span>
+        <span>Subtotal: $<%= item.quantity * item.product.price %></span>
+        <%= button_to "Remove", cart_item_path(item), method: :delete, class: "btn-remove" %>
+      </div>
+    <% end %>
+
+    <%= turbo_frame_tag "cart_total" do %>
+      <h2>Total: $<%= @cart_items.sum { |i| i.quantity * i.product.price } %></h2>
+    <% end %>
+
+    <%= link_to "Proceed to Checkout", "#", class: "btn-checkout" %>
+  <% else %>
+    <p>Your cart is empty.</p>
+    <%= link_to "Continue Shopping", products_path %>
+  <% end %>
+<% end %>
