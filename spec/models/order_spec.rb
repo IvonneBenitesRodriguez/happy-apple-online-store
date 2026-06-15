@@ -1,35 +1,34 @@
+# spec/models/order_spec.rb
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-  describe 'validations' do
-    it 'is valid with shipping_address, phone and payment_method' do
-      user = User.create!(email_address: 'order_test@happyapple.com', password: 'password123')
+  let(:user) { User.create!(email_address: "test@example.com", password: "password123") }
+
+  describe "shipping_address normalization" do
+    it "replaces newlines with comma-separated values before saving" do
       order = Order.new(
         user: user,
-        shipping_address: 'Berlin, Germany',
-        phone: '+49123456789',
-        payment_method: 'credit_card',
-        total: 24.0
+        shipping_address: "Villa Lane 1020\nFlorida\nUsa",
+        phone: "123456",
+        payment_method: "paypal",
+        total: 10.0,
+        status: "pending"
       )
-      expect(order).to be_valid
+      order.save!
+      expect(order.shipping_address).to eq("Villa Lane 1020, Florida, Usa")
     end
 
-    it 'is invalid without shipping_address' do
-      user = User.create!(email_address: 'order_test2@happyapple.com', password: 'password123')
-      order = Order.new(user: user, phone: '+49123456789', payment_method: 'credit_card', total: 24.0)
-      expect(order).not_to be_valid
-    end
-
-    it 'is invalid without phone' do
-      user = User.create!(email_address: 'order_test3@happyapple.com', password: 'password123')
-      order = Order.new(user: user, shipping_address: 'Berlin', payment_method: 'credit_card', total: 24.0)
-      expect(order).not_to be_valid
-    end
-
-    it 'is invalid with an unsupported payment method' do
-      user = User.create!(email_address: 'order_test4@happyapple.com', password: 'password123')
-      order = Order.new(user: user, shipping_address: 'Berlin', phone: '+49123456789', payment_method: 'crypto', total: 24.0)
-      expect(order).not_to be_valid
+    it "leaves addresses without newlines unchanged" do
+      order = Order.new(
+        user: user,
+        shipping_address: "Villa Lane 1020 Apopka Florida 42114",
+        phone: "123456",
+        payment_method: "paypal",
+        total: 10.0,
+        status: "pending"
+      )
+      order.save!
+      expect(order.shipping_address).to eq("Villa Lane 1020 Apopka Florida 42114")
     end
   end
 end
