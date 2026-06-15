@@ -1,3 +1,11 @@
-<h1>Welcome to Happy Apple! 🍎</h1>
-<p>You are logged in successfully.</p>
-<%= button_to "Logout", session_path, method: :delete %>
+<%# app/views/dashboard/index.html.erb %>
+<div class="welcome-container text-center">
+  <h1>Welcome to Happy Apple, dear <%= current_user.email_address.split("@").first %>! 🍎</h1>
+  <p>We wish you a beautiful day.</p>
+  <p class="daily-thought"><em><%= daily_thought %></em></p>
+
+  <h2>What's your order today?</h2>
+  <%= link_to "Ver productos", products_path, class: "btn btn-primary" %>
+
+  <p><%= button_to "Logout", session_path, method: :delete %></p>
+</div>
