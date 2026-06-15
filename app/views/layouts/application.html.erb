@@ -24,6 +24,18 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% if authenticated? %>
+      <header class="site-header">
+        <%= link_to "🍎 Happy Apple", products_path, class: "logo" %>
+        <nav class="site-nav">
+          <%= render "cart_items/cart_count" %>
+          <%= button_to "Logout", session_path, method: :delete, class: "btn-logout" %>
+        </nav>
+      </header>
+    <% end %>
+
+    <main class="page-content">
+      <%= yield %>
+    </main>
   </body>
 </html>

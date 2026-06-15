@@ -1,6 +1,5 @@
 <div class="products-header">
   <h1>Hello, <%= current_user.email_address %> 👋</h1>
-  <%= render "cart_items/cart_count" %>
   <div class="search-bar">
     <%= search_field_tag :search, params[:search], 
         placeholder: "Search...", class: "search-input" %>
@@ -12,12 +11,15 @@
 <div class="products-grid">
   <% @products.each do |product| %>
     <div class="product-card">
-      <div class="product-image">🍵</div>
+      <%= image_tag "#{product.name.parameterize}.jpg", class: "product-image" %>
       <h3><%= product.name %></h3>
       <p class="product-category"><%= product.category %></p>
       <p class="product-price">$<%= product.price %></p>
       <p class="product-benefits"><%= product.benefits %></p>
-      <%= link_to "Details", product_path(product), class: "btn-details" %>
+      <details class="product-details">
+            <summary></summary>
+            <p><%= product.description %></p>
+      </details>
       <%= button_to "Add to Cart", cart_items_path(product_id: product.id), method: :post, class: "btn-cart" %>
     </div>
   <% end %>
