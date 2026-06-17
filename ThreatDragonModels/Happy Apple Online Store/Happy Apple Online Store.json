@@ -19,8 +19,8 @@
         "cells": [
           {
             "position": {
-              "x": 80,
-              "y": 100
+              "x": 40,
+              "y": 80
             },
             "size": {
               "width": 112.5,
@@ -136,16 +136,16 @@
           },
           {
             "position": {
-              "x": 220,
-              "y": 20
+              "x": 211.99999999999972,
+              "y": 35
             },
             "size": {
-              "width": 160,
-              "height": 220
+              "width": 210,
+              "height": 150
             },
             "attrs": {
               "text": {
-                "text": "Happy Apple Rails App"
+                "text": "Happy Apple Rails App\n"
               },
               "body": {
                 "stroke": "#333333",
@@ -237,11 +237,11 @@
                 }
               ]
             },
-            "id": "3716d979-4cae-4bf0-996f-b1779993315c",
+            "id": "3f7d31dc-0b60-48f9-a426-c5e4cc16aa2d",
             "zIndex": 2,
             "data": {
               "type": "tm.Process",
-              "name": "Happy Apple Rails App",
+              "name": "Happy Apple Rails App\n",
               "description": "",
               "outOfScope": false,
               "isTrustBoundary": false,
@@ -256,8 +256,8 @@
           },
           {
             "position": {
-              "x": 397,
-              "y": 100
+              "x": 444,
+              "y": 80
             },
             "size": {
               "width": 120,
@@ -265,7 +265,7 @@
             },
             "attrs": {
               "text": {
-                "text": "PostgreSQL"
+                "text": "PostgreSQL\n"
               },
               "topLine": {
                 "strokeWidth": 1.5,
@@ -360,11 +360,11 @@
                 }
               ]
             },
-            "id": "5b9af327-fecf-4c79-b5ca-4557c9327a33",
+            "id": "71b50e92-21c8-4ec3-8e4d-0515b2005ecd",
             "zIndex": 3,
             "data": {
               "type": "tm.Store",
-              "name": "PostgreSQL",
+              "name": "PostgreSQL\n",
               "description": "",
               "outOfScope": false,
               "isTrustBoundary": false,
@@ -376,24 +376,63 @@
               "storesCredentials": false,
               "storesInventory": false,
               "threats": []
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTPS Request\n",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "HTTPS Request\n"
+            ],
+            "id": "03d3defd-bdd6-41c7-945e-8a9c5013960a",
+            "source": {
+              "x": 153,
+              "y": 102
+            },
+            "target": {
+              "cell": "3f7d31dc-0b60-48f9-a426-c5e4cc16aa2d",
+              "port": "ed720f2e-9e24-4874-b8dd-d49cc93dfad4"
+            },
+            "vertices": [
+              {
+                "x": 210,
+                "y": 185
+              },
+              {
+                "x": 220,
+                "y": 202
+              }
+            ]
           }
         ],
         "description": "Level 0 Data Flow Diagram showing the user, the Rails monolith, and the PostgreSQL database, including authentication, cart, and checkout flows."
