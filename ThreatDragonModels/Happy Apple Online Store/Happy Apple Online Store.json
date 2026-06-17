@@ -547,13 +547,59 @@
             ]
           },
           {
-            "position": {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Data Flow"
+            ],
+            "id": "c8dfa996-1f3f-4127-bcce-7d5362473d07",
+            "source": {
               "x": 40,
               "y": 120
             },
+            "target": {
+              "x": 140,
+              "y": 220
+            }
+          },
+          {
+            "position": {
+              "x": -100,
+              "y": 180
+            },
             "size": {
-              "width": 112.5,
-              "height": 60
+              "width": 420,
+              "height": 100
             },
             "attrs": {
               "text": {
@@ -568,13 +614,6 @@
               "type": "tm.Text",
               "name": "Authentication: BCrypt password hashing + signed session cookies",
               "hasOpenThreats": false
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           }
         ],
