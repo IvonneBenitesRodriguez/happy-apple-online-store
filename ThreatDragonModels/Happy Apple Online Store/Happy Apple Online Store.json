@@ -1,0 +1,838 @@
+{
+  "version": "2.6.2",
+  "summary": {
+    "title": "Happy Apple Online Store",
+    "owner": "Ivonne Benites Rodriguez",
+    "description": "E-Commerce full-stack project developed in Ruby on Rails 8.1, with BCrypt-based authentication (sign-up, login). Features include a personalized dashboard, a product gallery with price, description, and image per item, an \"add to cart\" button with persistent cart counter, a checkout flow capturing shipping address, phone number, and payment method, and order confirmation with order history per user.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "Happy Apple - Data Flow Diagram",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": -1,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Internet Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "crossingFlows": [],
+              "containedElements": []
+            },
+            "labels": [
+              "Internet Boundary"
+            ],
+            "id": "aa586c88-77cd-48db-90aa-27f2a7ae8a0d",
+            "source": {
+              "x": 153,
+              "y": 90
+            },
+            "target": {
+              "x": 350,
+              "y": 150
+            }
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": -1,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Database Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "crossingFlows": [],
+              "containedElements": []
+            },
+            "labels": [
+              "Database Boundary"
+            ],
+            "id": "b55b82f0-9fab-471d-a3eb-ae3c8bcea4c9",
+            "source": {
+              "x": 480,
+              "y": 130
+            },
+            "target": {
+              "cell": "71b50e92-21c8-4ec3-8e4d-0515b2005ecd",
+              "port": "5eeca6c8-5575-44ee-8b65-5d9a4bd8c40d"
+            }
+          },
+          {
+            "position": {
+              "x": 40,
+              "y": 60
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "User"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 1,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "4fe45dbf-6819-4a23-9051-9ff2492e0cdc"
+                },
+                {
+                  "group": "right",
+                  "id": "fc53bdfb-a85e-4459-9d8c-68242c7ef96d"
+                },
+                {
+                  "group": "bottom",
+                  "id": "b5d29594-c6d4-4fa2-8b3b-d38b809b7890"
+                },
+                {
+                  "group": "left",
+                  "id": "74c92264-35f1-46f7-ae82-bafcf0cffb90"
+                }
+              ]
+            },
+            "id": "2c102f9e-76f0-4de6-a2b4-94b4a62fb647",
+            "data": {
+              "type": "tm.Actor",
+              "name": "User",
+              "description": "",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "180bc97e-5902-4f20-b464-d720aa92eadf",
+                  "title": "User Identity Spoofing",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "An attacker could impersonate a legitimate user by stealing or guessing their credentials, or by hijacking an active session.escription for this threat.",
+                  "mitigation": "Passwords are hashed with BCrypt before storage; Rails 8 native rate_limit throttles repeated login attempts (10 requests / 3 minutes) on SessionsController#create; session cookies are signed, httponly, and same_site: lax to prevent tampering and CSRF/XSS-based theft.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": "7.5"
+                },
+                {
+                  "id": "2b0e4fe0-d094-41d0-af47-13cdd6cee734",
+                  "title": "User action repudiation",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "A user could deny having performed a sensitive action, making it difficult to establish accountability.",
+                  "mitigation": "Sensitive actions are logged server-side with timestamps and tied to the authenticated session, creating an audit trail that supports non-repudiation.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": "5.0"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 2,
+                "repudiation": 1
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 310,
+              "y": 30
+            },
+            "size": {
+              "width": 210,
+              "height": 150
+            },
+            "attrs": {
+              "text": {
+                "text": "Happy Apple Rails App\n"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 2,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "f1f97375-f106-4bb6-9b82-01cbc7a7a5c7"
+                },
+                {
+                  "group": "right",
+                  "id": "4e49ef0c-9a34-49ac-9cf9-c07c568e3c72"
+                },
+                {
+                  "group": "bottom",
+                  "id": "ed720f2e-9e24-4874-b8dd-d49cc93dfad4"
+                },
+                {
+                  "group": "left",
+                  "id": "36057246-56e8-46ee-94c0-81afc0634bc7"
+                }
+              ]
+            },
+            "id": "3f7d31dc-0b60-48f9-a426-c5e4cc16aa2d",
+            "data": {
+              "type": "tm.Process",
+              "name": "Happy Apple Rails App\n",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "e5ef7b7d-5ea6-443a-98cc-c69c2b6281ff",
+                  "title": "Server Impersonation via MITM",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": " An attacker positioned between client and server could impersonate the application to intercept or manipulate traffic.",
+                  "mitigation": " All traffic is enforced over HTTPS/TLS; HTTP Strict Transport Security (HSTS) prevents downgrade to unencrypted connections.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": "7.0"
+                },
+                {
+                  "id": "c32e5103-08ac-4015-bac0-156a66506590",
+                  "title": "Parameter Tampering via Mass Assignment",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "An attacker could manipulate request parameters to set unintended attributes on a model, altering application behavior or data.",
+                  "mitigation": " Rails Strong Parameters whitelist only explicitly permitted attributes for each controller action.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": "6.5"
+                },
+                {
+                  "id": "beccf84e-263f-4d63-b06d-7581b428abf4",
+                  "title": "Insufficient Security Event Logging",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Without adequate logging of security-relevant actions, it becomes difficult to reconstruct what happened during an incident.",
+                  "mitigation": "Structured logging captures security-relevant events such as authentication and authorization failures, with timestamps.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": "5.0"
+                },
+                {
+                  "id": "887e86af-0b34-4316-9002-aa5973d8b935",
+                  "title": "Information Disclosure via verbose errors",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Detailed error messages or stack traces could expose internal implementation details useful to an attacker.",
+                  "mitigation": "The application runs in production mode, suppressing stack traces and serving generic custom error pages.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": "5.5"
+                },
+                {
+                  "id": "13535ab5-a1f0-4b3a-b681-e4e277e06c82",
+                  "title": "Denial of Service on critical Endpoints",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": " An attacker could flood login, checkout, or other resource-intensive endpoints, degrading availability for legitimate users.",
+                  "mitigation": "Rails 8 native rate_limit is applied to SessionsController#create and PasswordsController#create (10 requests / 3 minutes), protecting against login brute-force. Checkout and other endpoints are not yet rate-limited.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": "5.5"
+                },
+                {
+                  "id": "2b5ee986-767c-4310-8c14-b4a0d858d8f8",
+                  "title": "Privilege Escalation via Parameter Manipulation",
+                  "status": "NotApplicable",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "A regular user could manipulate request parameters to attempt to gain unauthorized administrative privileges.",
+                  "mitigation": "No role-based access control implemented yet; all authenticated users share equal privileges. Revisit in case admin functionality will be added.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": "8.5"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 2,
+                "elevationOfPrivilege": 2
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 660,
+              "y": 150
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "PostgreSQL\n"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 3,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "ac144456-4871-4d6a-882b-9aa728ee580b"
+                },
+                {
+                  "group": "right",
+                  "id": "45143a36-5ffd-464b-9491-106c3d9a825f"
+                },
+                {
+                  "group": "bottom",
+                  "id": "5eeca6c8-5575-44ee-8b65-5d9a4bd8c40d"
+                },
+                {
+                  "group": "left",
+                  "id": "238e3359-0664-42a1-b217-034b1ab4e356"
+                }
+              ]
+            },
+            "id": "71b50e92-21c8-4ec3-8e4d-0515b2005ecd",
+            "data": {
+              "type": "tm.Store",
+              "name": "PostgreSQL\n",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "f11872f4-2c33-451a-b853-6bebb1c6c2d7",
+                  "title": "Data Tampering via SQL Injection",
+                  "status": "Mitigated",
+                  "severity": "Critical",
+                  "type": "Tampering",
+                  "description": "An attacker could inject malicious SQL to alter, delete, or corrupt stored data.",
+                  "mitigation": "All database queries use parameterized statements via ActiveRecord, combined with Strong Parameters at the application layer.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": "8.0"
+                },
+                {
+                  "id": "a0cb5579-7a2c-406f-9c3d-d22f1cccc0c2",
+                  "title": "Lack of Data Change Audit Trail",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "Without an audit trail, it is difficult to determine who modified specific records and when.",
+                  "mitigation": "created_at and updated_at timestamps are maintained on all records.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": "4.0"
+                },
+                {
+                  "id": "a0df6784-dfdc-420f-afef-a89a169f5230",
+                  "title": "Sensitive Data Exposure",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Sensitive data could be exposed through direct database access, backups, or misconfiguration.",
+                  "mitigation": "Passwords are hashed with BCrypt and never stored in plaintext; database network access is restricted to the application layer only.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": "7.0"
+                },
+                {
+                  "id": "4601171c-a227-48aa-9380-3dd86b99e8ca",
+                  "title": "Database DoS via Resource Exhaustion",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Expensive or unbounded queries could exhaust the connection pool, degrading availability.",
+                  "mitigation": "Connection pool limits, query timeouts, and proper indexing reduce the risk of resource exhaustion.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": "5.0"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTPS Request\n",
+              "description": "Authentication: BCrypt password hashing + signed session cookies",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "ac1a98ce-d5ac-4e7d-a4c0-97fafa0e0179",
+                  "title": "Request Tampering in Transit",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "A man-in-the-middle attacker could intercept and modify the request before it reaches the server.",
+                  "mitigation": "TLS encryption protects data in transit; HSTS prevents downgrade attacks to unencrypted HTTP.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": "7.0"
+                },
+                {
+                  "id": "3f72b115-e2ef-42da-937f-e5f94fa21564",
+                  "title": "Credential Exposure over Unencrypted Connection",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "If the connection were downgraded to HTTP, credentials and session tokens could be exposed to network eavesdroppers.",
+                  "mitigation": "HTTPS is enforced via redirect, and cookies are flagged Secure so they only transmit over encrypted connections.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": "6.5"
+                },
+                {
+                  "id": "f9f5972d-c012-495a-bf81-6d2f3737b4a9",
+                  "title": "Denial of Service via Request Flooding",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker could flood the HTTPS endpoint with requests to degrade availability.",
+                  "mitigation": "Rails 8 rate_limit applied only to login/password reset.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": "6.0"
+                }
+              ],
+              "trustBoundaryIds": [],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 3
+              }
+            },
+            "labels": [
+              "HTTPS Request\n"
+            ],
+            "id": "920058da-e5a0-4286-9aeb-5f238bdf3067",
+            "source": {
+              "x": 153,
+              "y": 85
+            },
+            "target": {
+              "x": 370,
+              "y": 120
+            },
+            "vertices": [
+              {
+                "x": 250,
+                "y": 85
+              }
+            ],
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead"
+              ],
+              "name": null
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "SQL Query",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "7346b6fe-ed96-4b77-89ee-b9877a0ef419",
+                  "title": "Query Injection",
+                  "status": "Mitigated",
+                  "severity": "Critical",
+                  "type": "Tampering",
+                  "description": "Unsanitized input passed into a database query could allow an attacker to inject malicious SQL.",
+                  "mitigation": "ActiveRecord parameterized queries prevent raw user input from being interpreted as SQL code.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": "8.0"
+                },
+                {
+                  "id": "a1dc6b91-f983-40f4-a711-3c37aaa60d23",
+                  "title": "Over Exposure of Query Results",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "A query could unintentionally return data belonging to other users if not properly scoped.",
+                  "mitigation": "All queries are explicitly scoped to current_user (e.g., current_user.orders.find(params[:id]) in OrdersController), preventing access to other users' records via ID manipulation (IDOR)",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 17,
+                  "score": "6.5"
+                },
+                {
+                  "id": "7154ed1a-fd03-4045-b943-b837c840e1d8",
+                  "title": "Slow Query Denial of Service",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Unindexed or expensive queries could degrade database performance for all users.",
+                  "mitigation": "Proper indexing, query optimization, and statement timeouts limit the impact of expensive queries.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 18,
+                  "score": "4.5"
+                }
+              ],
+              "trustBoundaryIds": [],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 2,
+                "denialOfService": 1
+              }
+            },
+            "labels": [
+              "SQL Query"
+            ],
+            "id": "6c258ae8-d743-402c-a349-0743f684e749",
+            "source": {
+              "x": 486,
+              "y": 85
+            },
+            "target": {
+              "cell": "71b50e92-21c8-4ec3-8e4d-0515b2005ecd",
+              "port": "238e3359-0664-42a1-b217-034b1ab4e356"
+            },
+            "vertices": [
+              {
+                "x": 560,
+                "y": 150
+              },
+              {
+                "x": 570,
+                "y": 160
+              },
+              {
+                "x": 600,
+                "y": 180
+              }
+            ]
+          }
+        ],
+        "description": "Level 0 Data Flow Diagram showing the user, the Rails monolith, and the PostgreSQL database, including authentication, cart, and checkout flows."
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "",
+    "threatTop": 18
+  }
+}
