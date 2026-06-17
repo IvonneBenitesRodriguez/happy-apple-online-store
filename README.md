@@ -24,3 +24,31 @@ Product catalog with categories (coffee/tea), search, and detail view.<br/>
 Shopping cart (add, update quantity, remove items).<br/>
 Checkout flow with shipping address, phone, and payment method selection.<br/>
 Order confirmation and persistent order history per user.<br/>
+
+### Screnshots
+
+#### Sign-up
+![Sign-up screen](docs/screenshots/sign-up.png)<br/>
+
+#### Login
+![Login screen](docs/screenshots/login.png)<br/>
+
+#### Dashboard
+![Dashboard screen](docs/screenshots/dashboard.png)<br/>
+
+#### Products
+![Products screen](docs/screenshots/products.png)<br/>
+
+#### Checkout-Shipping
+![Checkout-Shipping screen](docs/screenshots/checkout-shipping.png)<br/>
+
+#### Order-Confirmed
+![Order-Confirmed screen](docs/screenshots/order-confirmed.png)<br/>
+
+
+
+
+
+
+
+
