@@ -195,7 +195,7 @@
                   "severity": "High",
                   "type": "Spoofing",
                   "description": "An attacker could impersonate a legitimate user by stealing or guessing their credentials, or by hijacking an active session.escription for this threat.",
-                  "mitigation": "Passwords are hashed with BCrypt before storage; Rack::Attack throttles repeated failed login attempts; session cookies are signed and flagged httponly to prevent tampering and theft via XSS.",
+                  "mitigation": "Passwords are hashed with BCrypt before storage; Rails 8 native rate_limit throttles repeated login attempts (10 requests / 3 minutes) on SessionsController#create; session cookies are signed, httponly, and same_site: lax to prevent tampering and CSRF/XSS-based theft.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 1,
@@ -216,7 +216,7 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
+                "spoofing": 2,
                 "repudiation": 1
               }
             }
@@ -426,6 +426,13 @@
                 "denialOfService": 1,
                 "elevationOfPrivilege": 1
               }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -611,13 +618,6 @@
                 "informationDisclosure": 1,
                 "denialOfService": 1
               }
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           },
           {
@@ -650,8 +650,53 @@
               "isEncrypted": true,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": [],
-              "trustBoundaryIds": []
+              "threats": [
+                {
+                  "id": "ac1a98ce-d5ac-4e7d-a4c0-97fafa0e0179",
+                  "title": "Request Tampering in Transit",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "A man-in-the-middle attacker could intercept and modify the request before it reaches the server.",
+                  "mitigation": "TLS encryption protects data in transit; HSTS prevents downgrade attacks to unencrypted HTTP.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": "7.0"
+                },
+                {
+                  "id": "3f72b115-e2ef-42da-937f-e5f94fa21564",
+                  "title": "Credential Exposure over Unencrypted Connection",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "If the connection were downgraded to HTTP, credentials and session tokens could be exposed to network eavesdroppers.",
+                  "mitigation": "HTTPS is enforced via redirect, and cookies are flagged Secure so they only transmit over encrypted connections.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": "6.5"
+                },
+                {
+                  "id": "f9f5972d-c012-495a-bf81-6d2f3737b4a9",
+                  "title": "Denial of Service via Request Flooding",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker could flood the HTTPS endpoint with requests to degrade availability.",
+                  "mitigation": "Rack::Attack applies rate limiting to incoming requests.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": "6.0"
+                }
+              ],
+              "trustBoundaryIds": [],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "HTTPS Request\n"
@@ -676,7 +721,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -697,13 +743,58 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": [],
-              "trustBoundaryIds": []
+              "threats": [
+                {
+                  "id": "7346b6fe-ed96-4b77-89ee-b9877a0ef419",
+                  "title": "Query Injection",
+                  "status": "Mitigated",
+                  "severity": "Critical",
+                  "type": "Tampering",
+                  "description": "Unsanitized input passed into a database query could allow an attacker to inject malicious SQL.",
+                  "mitigation": "ActiveRecord parameterized queries prevent raw user input from being interpreted as SQL code.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": "8.0"
+                },
+                {
+                  "id": "a1dc6b91-f983-40f4-a711-3c37aaa60d23",
+                  "title": "Over Exposure of Query Results",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "A query could unintentionally return data belonging to other users if not properly scoped.",
+                  "mitigation": "All queries are explicitly scoped to current_user (e.g., current_user.orders.find(params[:id]) in OrdersController), preventing access to other users' records via ID manipulation (IDOR)",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 17,
+                  "score": "6.5"
+                },
+                {
+                  "id": "7154ed1a-fd03-4045-b943-b837c840e1d8",
+                  "title": "Slow Query Denial of Service",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Unindexed or expensive queries could degrade database performance for all users.",
+                  "mitigation": "Proper indexing, query optimization, and statement timeouts limit the impact of expensive queries.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 18,
+                  "score": "4.5"
+                }
+              ],
+              "trustBoundaryIds": [],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 2,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "SQL Query"
@@ -738,6 +829,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "",
-    "threatTop": 12
+    "threatTop": 18
   }
 }
