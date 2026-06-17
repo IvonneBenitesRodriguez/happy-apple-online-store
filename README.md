@@ -34,19 +34,20 @@ Order confirmation and persistent order history per user.<br/>
 <img src="docs/screenshots/sign-up.png" width="300"><br/>
 
 #### Login Part:
-![Login screen](docs/screenshots/login.png)<br/>
+<img src="docs/screenshots/login.png" width="300"><br/>
 
 #### Dashboard Part:
-![Dashboard screen](docs/screenshots/dashboard.png)<br/>
+<img src="docs/screenshots/dashboard.png" width="300"><br/>
 
 #### Products Gallery & Description & Prices:
-![Products screen](docs/screenshots/products.png)<br/>
+<img src="docs/screenshots/products.png" width="300"><br/>
 
 #### Checkout-Shipping Part:
-![Checkout-Shipping screen](docs/screenshots/checkout-shipping.png)<br/>
+<img src="docs/screenshots/checkout-shipping.png" width="300"><br/>
+
 
 #### Order-Confirmed Part:
-![Order-Confirmed screen](docs/screenshots/order-confirmed.png)<br/>
+<img src="docs/screenshots/order-confirmed.png" width="300"><br/>
 
 #### Testing (TDD)
 
@@ -151,7 +152,7 @@ Get-ChildItem -Path app/views -Recurse -Include *.erb | Select-String -Pattern "
 Brakeman was run against the full codebase (9 controllers, 9 models, 15 templates) covering ~120 vulnerability categories including SQL Injection, XSS, Mass Assignment, Session Manipulation, and CSRF.
 
 Result: 0 security warnings, 0 errors.<br/>
-![brakeman screen](docs/screenshots/brakeman.png)
+<img src="docs/screenshots/brakeman.png" width="400">
 
 6. <strong> Transport Security</strong> 🌐
 
