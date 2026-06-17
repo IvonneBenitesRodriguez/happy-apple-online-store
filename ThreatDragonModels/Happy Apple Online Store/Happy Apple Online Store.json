@@ -545,30 +545,6 @@
                 "y": 180
               }
             ]
-          },
-          {
-            "position": {
-              "x": -100,
-              "y": 180
-            },
-            "size": {
-              "width": 420,
-              "height": 100
-            },
-            "attrs": {
-              "text": {
-                "text": "Authentication: BCrypt password hashing + signed session cookies"
-              }
-            },
-            "visible": true,
-            "shape": "td-text-block",
-            "id": "2d9b7df6-08cf-40f0-b972-79431bdc6be9",
-            "zIndex": 11,
-            "data": {
-              "type": "tm.Text",
-              "name": "Authentication: BCrypt password hashing + signed session cookies",
-              "hasOpenThreats": false
-            }
           }
         ],
         "description": "Level 0 Data Flow Diagram showing the user, the Rails monolith, and the PostgreSQL database, including authentication, cart, and checkout flows."
