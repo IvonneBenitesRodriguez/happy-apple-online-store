@@ -1,6 +1,9 @@
  ##  🍎 Happy Apple Online Store
 
-A full-stack e-commerce application built with Ruby on Rails 8.1, demonstrating a complete purchase flow alongside a deliberate, documented approach to application security.
+<strong>A Full-stack e-commerce application </strong> built entirely with Ruby on Rails 8.1, demonstrating a complete purchase flow alongside a deliberate, documented approach to application security.<br/>
+
+This project contains 3 important parts described:
+<strong>Functionality </strong>, <strong> Security</strong>, and <strong>Compliance</strong>. 
 
 Live demo: https://happy-apple-online-store-production.up.railway.app
 
@@ -168,7 +171,18 @@ Beyond ad-hoc security reviews, this project includes a formal STRIDE threat mod
 The full model — including descriptions, mitigations, and status per threat — is available in [`ThreatDragonModels/Happy Apple Online Store/Happy Apple Online Store.json`](ThreatDragonModels/Happy%20Apple%20Online%20Store/Happy%20Apple%20Online%20Store.json).
 
 
+### Part 3. Compliance 📋
 
+**GDPR**
+- Lawful basis for processing: contract performance (data is needed to fulfill a purchase).
+- Data minimization: only email, shipping address, phone, and order history are collected — nothing beyond what checkout requires.
+- Access control: personal data is only retrievable by its owner via `current_user`-scoped queries (see IDOR protection above).
+- Password security: passwords are hashed with BCrypt and never stored or transmitted in plaintext.
+- **Known limitation — Right to Erasure (Art. 17):** no self-service account deletion yet.
+- **Known limitation — Right of Access (Art. 15):** no self-service data export yet.
+
+**PCI-DSS**
+- No real payment gateway is integrated yet; `payment_method` is currently a placeholder field for demonstration purposes. The architecture is intentionally designed so that, if integrated, cardholder data would never touch this application's servers or database — keeping it in the lowest validation tier (SAQ A).
 
 
 
