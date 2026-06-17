@@ -394,11 +394,11 @@
                 {
                   "id": "13535ab5-a1f0-4b3a-b681-e4e277e06c82",
                   "title": "Denial of Service on critical Endpoints",
-                  "status": "Mitigated",
+                  "status": "Open",
                   "severity": "Medium",
                   "type": "Denial of service",
                   "description": " An attacker could flood login, checkout, or other resource-intensive endpoints, degrading availability for legitimate users.",
-                  "mitigation": "Rack::Attack throttles and blocks excessive requests per identifier on sensitive endpoints.",
+                  "mitigation": "Rails 8 native rate_limit is applied to SessionsController#create and PasswordsController#create (10 requests / 3 minutes), protecting against login brute-force. Checkout and other endpoints are not yet rate-limited.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 7,
@@ -407,11 +407,11 @@
                 {
                   "id": "2b5ee986-767c-4310-8c14-b4a0d858d8f8",
                   "title": "Privilege Escalation via Parameter Manipulation",
-                  "status": "Open",
+                  "status": "NotApplicable",
                   "severity": "Critical",
                   "type": "Elevation of privilege",
                   "description": "A regular user could manipulate request parameters to attempt to gain unauthorized administrative privileges.",
-                  "mitigation": "Authorization is enforced server-side based on the role stored in the database; client-supplied role parameters are never trusted.",
+                  "mitigation": "No role-based access control implemented yet; all authenticated users share equal privileges. Revisit in case admin functionality will be added.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 8,
@@ -423,16 +423,9 @@
                 "tampering": 1,
                 "repudiation": 1,
                 "informationDisclosure": 1,
-                "denialOfService": 1,
-                "elevationOfPrivilege": 1
+                "denialOfService": 2,
+                "elevationOfPrivilege": 2
               }
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           },
           {
