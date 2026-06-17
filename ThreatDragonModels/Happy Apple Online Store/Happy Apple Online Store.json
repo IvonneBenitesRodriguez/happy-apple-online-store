@@ -136,8 +136,8 @@
           },
           {
             "position": {
-              "x": 320,
-              "y": 40
+              "x": 310,
+              "y": 30
             },
             "size": {
               "width": 210,
@@ -256,8 +256,8 @@
           },
           {
             "position": {
-              "x": 600,
-              "y": 140
+              "x": 660,
+              "y": 150
             },
             "size": {
               "width": 120,
@@ -398,7 +398,7 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Data Flow",
+              "name": "HTTPS Request\n",
               "description": "",
               "outOfScope": false,
               "isTrustBoundary": false,
@@ -412,17 +412,23 @@
               "trustBoundaryIds": []
             },
             "labels": [
-              "Data Flow"
+              "HTTPS Request\n"
             ],
-            "id": "6c258ae8-d743-402c-a349-0743f684e749",
+            "id": "920058da-e5a0-4286-9aeb-5f238bdf3067",
             "source": {
-              "x": 486,
+              "x": 153,
               "y": 85
             },
             "target": {
-              "x": 586,
-              "y": 185
-            }
+              "x": 370,
+              "y": 120
+            },
+            "vertices": [
+              {
+                "x": 250,
+                "y": 85
+              }
+            ]
           },
           {
             "shape": "flow",
@@ -444,7 +450,7 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Data Flow",
+              "name": "SQL Query",
               "description": "",
               "outOfScope": false,
               "isTrustBoundary": false,
@@ -458,107 +464,31 @@
               "trustBoundaryIds": []
             },
             "labels": [
-              "Data Flow"
+              "SQL Query"
             ],
-            "id": "920058da-e5a0-4286-9aeb-5f238bdf3067",
+            "id": "6c258ae8-d743-402c-a349-0743f684e749",
             "source": {
-              "x": 153,
+              "x": 486,
               "y": 85
             },
             "target": {
-              "x": 370,
-              "y": 120
+              "cell": "71b50e92-21c8-4ec3-8e4d-0515b2005ecd",
+              "port": "238e3359-0664-42a1-b217-034b1ab4e356"
             },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead"
-              ],
-              "name": null
-            }
+            "vertices": [
+              {
+                "x": 560,
+                "y": 150
+              },
+              {
+                "x": 570,
+                "y": 160
+              },
+              {
+                "x": 600,
+                "y": 180
+              }
+            ]
           }
         ],
         "description": "Level 0 Data Flow Diagram showing the user, the Rails monolith, and the PostgreSQL database, including authentication, cart, and checkout flows."
