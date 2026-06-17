@@ -171,7 +171,7 @@ Beyond ad-hoc security reviews, this project includes a formal STRIDE threat mod
 The full model — including descriptions, mitigations, and status per threat — is available in [`ThreatDragonModels/Happy Apple Online Store/Happy Apple Online Store.json`](ThreatDragonModels/Happy%20Apple%20Online%20Store/Happy%20Apple%20Online%20Store.json).
 
 
-### Part 3. Compliance 📋
+### Part 3 - Compliance 📋
 
 **GDPR**
 - Lawful basis for processing: contract performance (data is needed to fulfill a purchase).
