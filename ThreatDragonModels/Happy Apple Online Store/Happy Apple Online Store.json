@@ -1,0 +1,27 @@
+{
+  "version": "2.6.2",
+  "summary": {
+    "title": "Happy Apple Online Store",
+    "owner": "Ivonne Benites Rodriguez",
+    "description": "E-Commerce full-stack project developed in Ruby on Rails 8.1, with BCrypt-based authentication (sign-up, login). Features include a personalized dashboard, a product gallery with price, description, and image per item, an \"add to cart\" button with persistent cart counter, a checkout flow capturing shipping address, phone number, and payment method, and order confirmation with order history per user.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "Happy Apple - Data Flow Diagram",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [],
+        "description": "Level 0 Data Flow Diagram showing the user, the Rails monolith, and the PostgreSQL database, including authentication, cart, and checkout flows."
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "",
+    "threatTop": 0
+  }
+}
