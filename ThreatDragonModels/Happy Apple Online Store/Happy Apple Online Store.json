@@ -256,8 +256,8 @@
           },
           {
             "position": {
-              "x": 444,
-              "y": 80
+              "x": 500,
+              "y": 110
             },
             "size": {
               "width": 120,
@@ -433,6 +433,53 @@
                 "y": 202
               }
             ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "SQL Query",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "SQL Query"
+            ],
+            "id": "3f37dec1-cfcd-4899-b3b5-800007c474e5",
+            "source": {
+              "x": 370,
+              "y": 50
+            },
+            "target": {
+              "x": 494,
+              "y": 158
+            },
+            "vertices": []
           }
         ],
         "description": "Level 0 Data Flow Diagram showing the user, the Rails monolith, and the PostgreSQL database, including authentication, cart, and checkout flows."
