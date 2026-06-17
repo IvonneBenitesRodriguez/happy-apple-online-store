@@ -31,7 +31,7 @@ Order confirmation and persistent order history per user.<br/>
 ### Full-Stack E-Commerce Happy Apple Online Store
 
 #### Sign-up Part:
-![Sign-up screen](docs/screenshots/sign-up.png)<br/>
+<img src="docs/screenshots/sign-up.png" width="300"><br/>
 
 #### Login Part:
 ![Login screen](docs/screenshots/login.png)<br/>
