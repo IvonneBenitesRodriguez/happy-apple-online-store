@@ -184,7 +184,11 @@ The full model — including descriptions, mitigations, and status per threat �
 **PCI-DSS**
 - No real payment gateway is integrated yet; `payment_method` is currently a placeholder field for demonstration purposes. The architecture is intentionally designed so that, if integrated, cardholder data would never touch this application's servers or database — keeping it in the lowest validation tier (SAQ A).
 
+### Author 🌼
 
+Built by **Ivonne Benites Rodriguez**, currently transitioning into AppSec & GRC after completing an MSc in Cybersecurity (Merit) at Arden University Berlin.
+
+[Portfolio](https://ivonnebenitesrodriguez.github.io/my_portfolio_2025) · Berlin, Germany
 
 
 
