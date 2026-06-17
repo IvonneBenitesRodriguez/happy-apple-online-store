@@ -146,14 +146,14 @@ Get-ChildItem -Path app/views -Recurse -Include *.erb | Select-String -Pattern "
 # No matches found
 ```
 
-6.<strong> Static Analysis — Brakeman </strong>🧑‍💻
+5.<strong> Static Analysis — Brakeman </strong>🧑‍💻
 
 Brakeman was run against the full codebase (9 controllers, 9 models, 15 templates) covering ~120 vulnerability categories including SQL Injection, XSS, Mass Assignment, Session Manipulation, and CSRF.
 
 Result: 0 security warnings, 0 errors.<br/>
 ![brakeman screen](docs/screenshots/brakeman.png)
 
-7. <strong> Transport Security</strong> 🌐
+6. <strong> Transport Security</strong> 🌐
 
 config.force_ssl = true and config.assume_ssl = true enabled in production, enforcing HTTPS for all traffic. <br/>
 
