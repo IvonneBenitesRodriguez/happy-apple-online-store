@@ -87,8 +87,8 @@
                 "text": "User"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -185,9 +185,40 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "180bc97e-5902-4f20-b464-d720aa92eadf",
+                  "title": "User Identity Spoofing",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "An attacker could impersonate a legitimate user by stealing or guessing their credentials, or by hijacking an active session.escription for this threat.",
+                  "mitigation": "Passwords are hashed with BCrypt before storage; Rack::Attack throttles repeated failed login attempts; session cookies are signed and flagged httponly to prevent tampering and theft via XSS.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": "7.5"
+                },
+                {
+                  "id": "2b0e4fe0-d094-41d0-af47-13cdd6cee734",
+                  "title": "User action repudiation",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "A user could deny having performed a sensitive action, making it difficult to establish accountability.",
+                  "mitigation": "Sensitive actions are logged server-side with timestamps and tied to the authenticated session, creating an audit trail that supports non-repudiation.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": "5.0"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "repudiation": 1
+              }
             }
           },
           {
@@ -204,8 +235,8 @@
                 "text": "Happy Apple Rails App\n"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -302,12 +333,99 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "e5ef7b7d-5ea6-443a-98cc-c69c2b6281ff",
+                  "title": "Server Impersonation via MITM",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": " An attacker positioned between client and server could impersonate the application to intercept or manipulate traffic.",
+                  "mitigation": " All traffic is enforced over HTTPS/TLS; HTTP Strict Transport Security (HSTS) prevents downgrade to unencrypted connections.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": "7.0"
+                },
+                {
+                  "id": "c32e5103-08ac-4015-bac0-156a66506590",
+                  "title": "Parameter Tampering via Mass Assignment",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "An attacker could manipulate request parameters to set unintended attributes on a model, altering application behavior or data.",
+                  "mitigation": " Rails Strong Parameters whitelist only explicitly permitted attributes for each controller action.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": "6.5"
+                },
+                {
+                  "id": "beccf84e-263f-4d63-b06d-7581b428abf4",
+                  "title": "Insufficient Security Event Logging",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Without adequate logging of security-relevant actions, it becomes difficult to reconstruct what happened during an incident.",
+                  "mitigation": "Structured logging captures security-relevant events such as authentication and authorization failures, with timestamps.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": "5.0"
+                },
+                {
+                  "id": "887e86af-0b34-4316-9002-aa5973d8b935",
+                  "title": "Information Disclosure via verbose errors",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Detailed error messages or stack traces could expose internal implementation details useful to an attacker.",
+                  "mitigation": "The application runs in production mode, suppressing stack traces and serving generic custom error pages.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": "5.5"
+                },
+                {
+                  "id": "13535ab5-a1f0-4b3a-b681-e4e277e06c82",
+                  "title": "Denial of Service on critical Endpoints",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": " An attacker could flood login, checkout, or other resource-intensive endpoints, degrading availability for legitimate users.",
+                  "mitigation": "Rack::Attack throttles and blocks excessive requests per identifier on sensitive endpoints.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": "5.5"
+                },
+                {
+                  "id": "2b5ee986-767c-4310-8c14-b4a0d858d8f8",
+                  "title": "Privilege Escalation via Parameter Manipulation",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "A regular user could manipulate request parameters to attempt to gain unauthorized administrative privileges.",
+                  "mitigation": "Authorization is enforced server-side based on the role stored in the database; client-supplied role parameters are never trusted.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": "8.5"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 1
+              }
             }
           },
           {
@@ -552,6 +670,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "",
-    "threatTop": 0
+    "threatTop": 8
   }
 }
