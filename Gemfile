@@ -62,5 +62,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
- 
+
+  # Generate a CycloneDX SBOM from Gemfile.lock [https://github.com/CycloneDX/cyclonedx-ruby]
+  gem "cyclonedx-ruby", require: false
 end

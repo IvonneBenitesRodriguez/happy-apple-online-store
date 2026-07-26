@@ -1,0 +1,85 @@
+[15:14:14] WARNING  The selected vulnerability database is large (~42.36 GiB   
+                    uncompressed) for a source-only scan. For faster downloads,
+                    consider an app-only image: `depscan-vdb download --scope  
+                    app`.                                                      
+[15:20:00] WARNING  Vulnerability database download failed (attempt 1/3):      
+                    ('Connection broken: IncompleteRead(2254438400 bytes read, 
+                    1581754576 more expected)', IncompleteRead(2254438400 bytes
+                    read, 1581754576 more expected)). Retrying ...             
+[15:53:16] INFO     Scanning CycloneDX xBOMs and atom slices                   
+
+Vulnerability Disclosure Report                                                
+
+The table below lists all vulnerabilities identified in this project. Review   
+and triage the information to identify any critical vulnerabilities.           
+
+                         Dependency Scan Results (BOM)                         
+╔══════════════════════╤═════════════════════╤═════════════╤══════════╤═══════╗
+║ Dependency Tree      │ Insights            │ Fix Version │ Severity │ Score ║
+╟──────────────────────┼─────────────────────┼─────────────┼──────────┼───────╢
+║ railties@8.1.3       │ 📓 Indirect         │ 1.3.7       │ LOW      │   2.1 ║
+║ └── activesupport@8… │ dependency          │             │          │       ║
+║     └── concurrent-… │                     │             │          │       ║
+║         ⬅            │                     │             │          │       ║
+║         CVE-2026-54… │                     │             │          │       ║
+║ railties@8.1.3       │                     │             │ LOW      │   3.1 ║
+║ └── activesupport@8… │                     │             │          │       ║
+║     └── concurrent-… │                     │             │          │       ║
+║         ⬅            │                     │             │          │       ║
+║         CVE-2026-54… │                     │             │          │       ║
+║ railties@8.1.3       │                     │             │ HIGH     │   8.2 ║
+║ └── activesupport@8… │                     │             │          │       ║
+║     └── concurrent-… │                     │             │          │       ║
+║         ⬅            │                     │             │          │       ║
+║         CVE-2026-54… │                     │             │          │       ║
+╟──────────────────────┼─────────────────────┼─────────────┼──────────┼───────╢
+║ actionpack@8.1.3     │ 📓 Indirect         │ 2.25.2      │ MEDIUM   │   5.0 ║
+║ └── rails-html-sani… │ dependency          │             │          │       ║
+║     └── loofah@2.25… │                     │             │          │       ║
+║         ⬅            │                     │             │          │       ║
+║         GHSA-9wjq-c… │                     │             │          │       ║
+║ actionpack@8.1.3     │                     │             │ LOW      │   2.3 ║
+║ └── rails-html-sani… │                     │             │          │       ║
+║     └── loofah@2.25… │                     │             │          │       ║
+║         ⬅            │                     │             │          │       ║
+║         GHSA-8whx-3… │                     │             │          │       ║
+║ actionpack@8.1.3     │                     │             │ LOW      │   2.3 ║
+║ └── rails-html-sani… │                     │             │          │       ║
+║     └── loofah@2.25… │                     │             │          │       ║
+║         ⬅            │                     │             │          │       ║
+║         GHSA-5qhf-9… │                     │             │          │       ║
+╟──────────────────────┼─────────────────────┼─────────────┼──────────┼───────╢
+║ nokogiri@1.19.3-x64… │                     │ 1.19.4      │ LOW      │   2.0 ║
+║ ⬅ CVE-2026-57438     │                     │             │          │       ║
+║ nokogiri@1.19.3-x64… │                     │             │ LOW      │   1.7 ║
+║ ⬅ CVE-2026-57437     │                     │             │          │       ║
+║ nokogiri@1.19.3-x64… │                     │             │ LOW      │   1.7 ║
+║ ⬅ CVE-2026-57436     │                     │             │          │       ║
+║ nokogiri@1.19.3-x64… │                     │             │ LOW      │   1.7 ║
+║ ⬅ CVE-2026-57435     │                     │             │          │       ║
+║ nokogiri@1.19.3-x64… │                     │             │ LOW      │   1.7 ║
+║ ⬅ CVE-2026-57434     │                     │             │          │       ║
+║ nokogiri@1.19.3-x64… │                     │             │ LOW      │   1.7 ║
+║ ⬅ CVE-2026-57236     │                     │             │          │       ║
+║ nokogiri@1.19.3-x64… │                     │             │ MEDIUM   │   6.3 ║
+║ ⬅ CVE-2026-57235     │                     │             │          │       ║
+║ nokogiri@1.19.3-x64… │                     │             │ LOW      │   2.6 ║
+║ ⬅ CVE-2026-57234     │                     │             │          │       ║
+╟──────────────────────┼─────────────────────┼─────────────┼──────────┼───────╢
+║ railties@8.1.3       │ 📓 Indirect         │ 1.7.1       │ MEDIUM   │   5.1 ║
+║ └── actionpack@8.1.3 │ dependency          │             │          │       ║
+║     └── rails-html-… │                     │             │          │       ║
+║         ⬅            │                     │             │          │       ║
+║         GHSA-cj75-f… │                     │             │          │       ║
+╟──────────────────────┼─────────────────────┼─────────────┼──────────┼───────╢
+║ rails@8.1.3          │ 📓 Indirect         │ 0.8.2       │ HIGH     │   7.3 ║
+║ └── actioncable@8.1… │ dependency          │             │          │       ║
+║     └── websocket-d… │                     │             │          │       ║
+║         ⬅            │                     │             │          │       ║
+║         CVE-2026-61… │                     │             │          │       ║
+╚══════════════════════╧═════════════════════╧═════════════╧══════════╧═══════╝
+                           Vulnerabilities count: 16                           
+
+┌────────────── Recommendation ───────────────┐
+│ ✅ No package requires immediate attention. │
+└─────────────────────────────────────────────┘

@@ -38,3 +38,6 @@
 Thumbs.db
 .vscode/
 .idea/
+
+# depscan config sample leaks local absolute filesystem paths; keep the SBOM/VEX reports themselves.
+/reports/depscan.toml.sample
