@@ -1,0 +1,79 @@
+name: SBOM y VEX (vulnerabilidades)
+
+# Cuándo se ejecuta este workflow automáticamente:
+on:
+  push:
+    branches: [ main ]        # cada vez que se sube código a main
+  pull_request:                # y en cada PR, para detectar vulnerabilidades antes del merge
+  schedule:
+    - cron: '0 6 * * 1'        # además, todos los lunes a las 06:00 UTC (aparecen CVEs nuevos aunque el código no cambie)
+  workflow_dispatch:           # y manualmente, con un botón "Run workflow" en la pestaña Actions
+
+jobs:
+  generar-sbom-y-vex:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Descarga el código del repo en el runner de GitHub Actions
+      - name: Descargar el código
+        uses: actions/checkout@v6
+
+      # 2. Node.js es necesario porque cdxgen (el generador del SBOM) es una herramienta npm
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # 3. Python es necesario porque depscan (el generador del VEX) es una herramienta pip
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # 4. Instala el generador de SBOM
+      - name: Instalar cdxgen
+        run: npm install -g @cyclonedx/cdxgen
+
+      # 5. Genera el SBOM (CycloneDX 1.5, JSON) a partir de Gemfile.lock
+      - name: Generar el SBOM del proyecto
+        run: cdxgen -t ruby -o bom.json --spec-version 1.5
+
+      # 6. Instala el analizador de vulnerabilidades + generador de VEX
+      - name: Instalar OWASP depscan
+        run: pip install owasp-depscan
+
+      # 7. Cruza el SBOM contra bases de datos de CVEs (NVD, GitHub Advisories, OSV)
+      #    y añade el VEX (estado de cada vulnerabilidad) dentro del propio bom.json
+      - name: Analizar vulnerabilidades y generar el VEX
+        run: |
+          depscan --bom bom.json -o reports --src . --no-banner
+
+      # 8. Si aparece alguna vulnerabilidad CRITICAL, se detiene el workflow con error
+      #    (falla el check en el PR/commit para que no pase desapercibido)
+      - name: Verificar que no haya vulnerabilidades CRITICAL
+        run: |
+          node -e "
+            const bom = require('./reports/bom.json');
+            const criticas = (bom.vulnerabilities || []).filter(v =>
+              (v.ratings || []).some(r => r.severity === 'critical')
+            );
+            if (criticas.length > 0) {
+              console.error('Se encontraron ' + criticas.length + ' vulnerabilidades CRITICAL:');
+              criticas.forEach(v => console.error('- ' + v.id));
+              process.exit(1);
+            }
+            console.log('Sin vulnerabilidades CRITICAL. Total analizadas: ' + (bom.vulnerabilities || []).length);
+          "
+
+      # 9. Guarda el SBOM+VEX y los reportes como "artifacts" descargables desde la
+      #    pestaña Actions del repo (no se publican como archivos permanentes del código,
+      #    así evitamos exponer vulnerabilidades sin parchear en el historial de git)
+      - name: Publicar reportes como artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-y-vex
+          path: |
+            bom.json
+            reports/
+          retention-days: 30
