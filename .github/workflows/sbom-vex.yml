@@ -20,7 +20,7 @@ jobs:
 
       # 2. Node.js es necesario porque cdxgen (el generador del SBOM) es una herramienta npm
       - name: Preparar Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: '22'
 
