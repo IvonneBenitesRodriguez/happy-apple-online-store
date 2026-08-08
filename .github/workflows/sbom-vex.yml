@@ -70,7 +70,7 @@ jobs:
       #    así evitamos exponer vulnerabilidades sin parchear en el historial de git)
       - name: Publicar reportes como artifacts
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: sbom-y-vex
           path: |
